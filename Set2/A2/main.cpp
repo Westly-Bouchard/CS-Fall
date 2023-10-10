@@ -1,7 +1,7 @@
 /* CSCI 200: Assignment 2: A2 - Complex Vector Math!
  *
  * Author: Westly Bouchard
- */
+*/
 
 
 #include <iostream>

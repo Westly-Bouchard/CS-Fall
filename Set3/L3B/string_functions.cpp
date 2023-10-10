@@ -4,118 +4,152 @@
 
 unsigned long string_length(const string STR)  {
     unsigned long result = -1;
-    result = STR.length();  // set result to the length of the string
+    result = STR.length();
     return result;
 }
 
 char string_char_at(const string STR, const int IDX) {
     char result = '\0';
-    // TODO 01: set result to the character of a string at a given index
-    std::cout << "TODO: implement string_char_at(\"" << STR << "\", " << IDX << ")" << std::endl;
+    result = STR[IDX];
     return result;
 }
 
 string string_append(const string LEFT, const string RIGHT)  {
     string result = LEFT;
-    // TODO 02: set result to the concatenation of strings LEFT and RIGHT
-    std::cout << "TODO: implement string_append(\"" << LEFT << "\", \"" << RIGHT << "\")" << std::endl;
+    result = LEFT + RIGHT;
     return result;
 }
 
 string string_insert(const string STR, const string TO_INSERT, const int IDX) {
     string result = STR;
-    // TODO 03: set result to the result of inserting a string into another
-    std::cout << "TODO: implement string_insert(\"" << STR << "\", \"" << TO_INSERT << "\", " << IDX << ")" << std::endl;
+    result.insert(IDX, TO_INSERT);
     return result;
 }
 
 size_t string_find(const string STR, const char C)  {
     size_t result = 0;
-    // TODO 04: set result to the index of the first occurrence of the character
-    std::cout << "TODO: implement string_find(\"" << STR << "\", '" << C << "')" << std::endl;
+    result = STR.find_first_of(C);
     return result;
 }
 
 string string_substring(const string STR, const int IDX, const int LEN) {
     string result = STR;
-    // TODO 05: set result to be a substring starting at index of given length
-    std::cout << "TODO: implement string_substring(\"" << STR << "\", " << IDX << ", " << LEN << ")" << std::endl;
+    result = result.substr(IDX, LEN);
     return result;
 }
 
 string string_replace(const string STR, const string TEXT_TO_REPLACE, const string REPLACE_WITH) {
     string result = STR;
-    // TODO 06: set result to be the string with the given text replaced
-    std::cout << "TODO: implement string_replace(\"" << STR << "\", \"" << TEXT_TO_REPLACE << "\", \"" << REPLACE_WITH << ")\"" << std::endl;
+
+    if (result.find(TEXT_TO_REPLACE) != string::npos) {
+        result.replace(result.find(TEXT_TO_REPLACE), TEXT_TO_REPLACE.length(), REPLACE_WITH);
+    }
     return result;
 }
 
 string string_first_word(const string STR)  {
     string result = STR;
-    // TODO 07: set result to the first word from the string
-    std::cout << "TODO: implement string_first_word(\"" << STR << "\")" << std::endl;
+    int firstSpace = STR.find(' ');
+    result = STR.substr(0, firstSpace);
     return result;
 }
 
 string string_remove_first_word(const string STR)  {
     string result = STR;
-    // TODO 08: set result to be the string with the first word removed
-    std::cout << "TODO: implement string_remove_first_word(\"" << STR << ")\"" << std::endl;
+    if (STR.find(' ') == string::npos) {
+        return "";
+    }
+    int firstSpace = STR.find(' ');
+    result = STR.substr(firstSpace + 1);
     return result;
 }
 
 string string_second_word(const string STR)  {
-    string result = STR;
-    // TODO 09: set result to be the second word from the string
-    std::cout << "TODO: implement string_second_word(\"" << STR << "\")" << std::endl;
-    return result;
+    return string_nth_word(STR, 2); 
 }
 
 string string_third_word(const string STR)  {
-    string result = STR;
-    // TODO 10: set result to be the third word from the string
-    std::cout << "TODO: implement string_third_word(\"" << STR << "\")" << std::endl;
-    return result;
+    return string_nth_word(STR, 3);
 }
 
 string string_nth_word(const string STR, const int N)  {
-    string result = STR;
-    // TODO 11: set result to be the nth word from the string
-    std::cout << "TODO: implement string_nth_word(\"" << STR << "\", " << N << ")" << std::endl;
-    return result;
+    vector<string> words;
+
+    int wordStart = 0;
+    for (unsigned long i = 0; i < STR.length(); i++) {
+        if (STR[i] == ' ' || i == STR.length() - 1) {
+            words.push_back(STR.substr(wordStart, i + (i == STR.length() - 1 ? 1 : 0) - wordStart));
+            wordStart = i + 1;
+        }
+    }
+
+    if (words.size() >= (unsigned long)N) {
+        return words.at(N - 1);
+    } else {
+        return "";
+    }
 }
 
 vector<string> string_tokenize(const string STR, const char DELIMINATOR) {
     vector<string> result;
-    // TODO 12: split the string by the given deliminator
-    std::cout << "TODO: implement string_tokenize(\"" << STR << "\", '" << DELIMINATOR << "')" << std::endl;
-    return result;
+    
+    int tokenStart = 0;
+    for (unsigned long i = 0; i < STR.length(); i++) {
+        if (STR[i] == DELIMINATOR || i == STR.length() - 1) {
+            result.push_back(STR.substr(tokenStart, i + (i == STR.length() - 1 ? 1 : 0) - tokenStart));
+            tokenStart = i + 1;
+        }
+    }
+
+    if (result.size() == 0) {
+        return {""};
+    } else {
+        return result;
+    }
 }
 
 string string_substitute(const string STR, const char TARGET, const char REPLACEMENT)  {
-    string result = STR;
-    // TODO 13: set result to be the string with all instances of TARGET replaced
-    std::cout << "TODO: implement string_substitute(\"" << STR << "\", '" << TARGET << "', '" << REPLACEMENT << "')" << std::endl;
+    string result = "";
+
+    for (unsigned long i = 0; i < STR.length(); i++) {
+        if (STR[i] == TARGET) {
+            result.push_back(REPLACEMENT);
+        } else {
+            result.push_back(STR[i]);
+        }
+    }
+
     return result;
 }
 
 string string_to_lower(const string STR) {
-    string result = STR;
-    // TODO 14: convert all characters to lower case
-    std::cout << "TODO: implement string_to_lower(\"" << STR << "\")" << std::endl;
+    string result = "";
+    
+    for (unsigned long i = 0; i < STR.length(); i++) {
+        result.push_back(tolower(STR[i]));
+    }
+
     return result;
 }
 
 string string_to_upper(const string STR) {
-    string result = STR;
-    // TODO 15: convert all characters to upper case
-    std::cout << "TODO: implement string_to_upper(\"" << STR << "\")" << std::endl;
+    string result = "";
+
+    for (unsigned long i = 0; i < STR.length(); i++) {
+        result.push_back(toupper(STR[i]));
+    }
+
     return result;
 }
 
 int string_compare(const string LHS, const string RHS) {
-    int result = 0;
-    // TODO 16: compare LHS and RHS
-    std::cout << "TODO: implement string_compare(\"" << LHS << "\", \"" << RHS << "\")" << std::endl;
-    return result;
+    int result = LHS.compare(RHS);
+
+    if (result < 0) {
+        return -1;
+    } else if (result > 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
