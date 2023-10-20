@@ -19,23 +19,49 @@ public:
      * 
      */
     Warehouse();
+
+    /**
+     * @brief Copy constructor
+     *        Deep copies the other Warehouse
+     * 
+     * @param other warehouse to deep copy
+     */
+    Warehouse(const Warehouse& other);
+
+    /**
+     * @brief Destroy the Warehouse object
+     * 
+     */
+    ~Warehouse();
+
     /**
      * @brief puts the item into a Box of given size
      * @param SIZE size of the cube shaped box to store
      */
     void storeInBox(const int SIZE);
+
     /**
      * @brief Get the Box object at given position within the list
      * @param BOX_POS position within the list to retrieve
      * @return Box* pointer to the corresponding Box object
      */
     Box* getBox(const int BOX_POS) const;
+
     /**
      * @brief Get the Number Of Boxes object
      * 
      * @return int 
      */
     int getNumberOfBoxes() const;
+
+    /**
+     * @brief Deep copy assignment operator
+     * 
+     * @param other Warehouse to deep copy
+     * @return Warehouse& 
+     */
+    Warehouse& operator=(const Warehouse& other);
+
 private:
     /**
      * @brief holds a list of pointers to Boxes
