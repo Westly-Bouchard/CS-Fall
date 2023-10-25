@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <time.h>
 using namespace std;
 
 #include <SFML/Graphics.hpp>
@@ -28,6 +29,9 @@ double randomInRange(double min, double max);
 
 // Main Function
 int main() {
+    // Seed the random number generator
+    srand(time(0));
+
     // Setup window, I thought that resizing might be a little weird with this assignment, so I
     // decided that the window would not be resizable
     RenderWindow window(
