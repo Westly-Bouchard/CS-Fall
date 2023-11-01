@@ -4,7 +4,12 @@
 using namespace std;
 
 ExitRoom::ExitRoom() {
-    cout << "ExitRoom() called" << endl;
+    this->mRoomName = "Exit Room";
+}
+
+bool ExitRoom::escapeTheRoom() {
+    cout << "You found the exit!" << endl;
+    return true;
 }
 
 ExitRoom::~ExitRoom() {

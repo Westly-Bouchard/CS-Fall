@@ -12,7 +12,7 @@ public:
     /**
      * @brief Destroy the ARoom object
      */
-    ~ARoom();
+    virtual ~ARoom();
 
     /**
      * @brief Get the Room Name object
@@ -27,7 +27,7 @@ public:
      * @return true if the room has been escaped from
      * @return false if you are still trapped in the room
      */
-    bool escapeTheRoom();
+    virtual bool escapeTheRoom() = 0;
 protected:
     /**
      * @brief name of the room
