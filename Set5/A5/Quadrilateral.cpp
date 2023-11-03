@@ -13,12 +13,12 @@ bool Rhombus::validate() {
     double side3 = calcLength(vertices[2], vertices[3]);
     double side4 = calcLength(vertices[3], vertices[0]);
 
-    Triangle t1;
+    IsoscelesTriangle t1;
     t1.setCoordinate(0, vertices[0]);
     t1.setCoordinate(1, vertices[1]);
     t1.setCoordinate(2, vertices[2]);
 
-    Triangle t2;
+    IsoscelesTriangle t2;
     t2.setCoordinate(0, vertices[0]);
     t2.setCoordinate(1, vertices[2]);
     t2.setCoordinate(2, vertices[3]);

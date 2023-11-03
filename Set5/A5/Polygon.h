@@ -17,7 +17,7 @@ class Polygon {
 
         void setCoordinate(int index, Coordinate coord);
 
-        virtual bool validate();
+        virtual bool validate() = 0;
 
     private:
         sf::Color color;

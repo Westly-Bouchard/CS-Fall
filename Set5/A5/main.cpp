@@ -9,8 +9,11 @@
 #include <iostream>
 #include <optional>
 #include <string>
+#include <sstream>
 #include <typeinfo>
 #include <vector>
+
+#include <SFML/Graphics.hpp>
 
 #include "Coordinate.h"
 #include "Polygon.h"
@@ -18,12 +21,16 @@
 #include "Quadrilateral.h"
 
 using namespace std;
+using namespace sf;
+
+#define WINDOW_WIDTH 650
+#define WINDOW_HEIGHT 650
 
 enum class PolygonType {
     ET, ST, IT, R
 };
 
-optional<Polygon*> makePolygon(ifstream& file, PolygonType type);
+optional<Polygon*> makePolygon(istream& file, PolygonType type);
 
 int main() {
 
@@ -35,14 +42,17 @@ int main() {
     }
 
     char type;
-    string line;
+    string lineTemp;
 
     vector<Polygon*> shapes;
 
     while (file.peek() != EOF) {
-        getline(file, line);
-        file.unget();
-        file >> type;
+        getline(file, lineTemp);
+        stringstream line;
+        line << lineTemp;
+
+        line >> type;
+
         PolygonType shapeType;
 
         switch (type) {
@@ -66,24 +76,46 @@ int main() {
                 return -1;
         }    
 
-        optional<Polygon*> polygon = makePolygon(file, shapeType);
+        optional<Polygon*> polygon = makePolygon(line, shapeType);
 
         if (polygon) {
             shapes.push_back(polygon.value());
         } else {
-            cout << "polygon is invalid - \"" << line << "\"" << endl;
+            cout << "polygon is invalid - \"" << line.str() << "\"" << endl;
         }
     }
 
-    
+    cout << "Number of valid polygons: " << shapes.size() << endl;
 
+    RenderWindow window(
+        VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
+        "Polygon Land",
+        Style::Titlebar | Style::Close
+    );
 
+    Event event;
 
-    cout << "Hello World" << endl;
+    while (window.isOpen()) {
+
+        while(window.pollEvent(event)) {
+            if (event.type == Event::Closed) {
+                window.close();
+            }
+        }
+
+        window.clear();
+
+        for (const auto& polygon : shapes) {
+            polygon->draw(window);
+        }
+
+        window.display();
+    }
+
     return 0;
 }
 
-optional<Polygon*> makePolygon(ifstream& file, PolygonType type) {
+optional<Polygon*> makePolygon(istream& file, PolygonType type) {
 
     Polygon* polygon;
 
@@ -122,10 +154,6 @@ optional<Polygon*> makePolygon(ifstream& file, PolygonType type) {
     file >> r;
     file >> g;
     file >> b;
-
-    // Consume the `\n' at the end of the line
-    char _;
-    file >> _;
 
     if (polygon->validate()) {
         polygon->setColor(sf::Color(r, g, b));

@@ -2,6 +2,9 @@
 #include "Coordinate.h"
 #include "Triangle.h"
 
+#include <iostream>
+using namespace std;
+
 bool isTriangle(const double side1, const double side2, const double side3);
 
 Triangle::Triangle() {

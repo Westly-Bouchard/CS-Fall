@@ -33,11 +33,9 @@ void Polygon::setCoordinate(int idx, Coordinate coord) {
     this->vertices[idx] = coord;
 }
 
-bool Polygon::validate() { return false; };
-
 double calcLength(const Coordinate& coord1, const Coordinate& coord2) {
     double xDiff = coord1.x - coord2.x;
     double yDiff = coord1.y - coord2.y;
 
-    return sqrt((xDiff * xDiff) + (yDiff + yDiff));
+    return sqrt((xDiff * xDiff) + (yDiff * yDiff));
 }
