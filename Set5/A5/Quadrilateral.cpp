@@ -2,16 +2,19 @@
 #include "Quadrilateral.h"
 #include "Triangle.h"
 
+#include <iostream>
+using namespace std;
+
 Quadrilateral::Quadrilateral() {
     this->numVertices = 4;
     this->vertices = new Coordinate[4];
 }
 
 bool Rhombus::validate() {
-    double side1 = calcLength(vertices[0], vertices[1]);
-    double side2 = calcLength(vertices[1], vertices[2]);
-    double side3 = calcLength(vertices[2], vertices[3]);
-    double side4 = calcLength(vertices[3], vertices[0]);
+    float side1 = calcLength(vertices[0], vertices[1]);
+    float side2 = calcLength(vertices[1], vertices[2]);
+    float side3 = calcLength(vertices[2], vertices[3]);
+    float side4 = calcLength(vertices[3], vertices[0]);
 
     IsoscelesTriangle t1;
     t1.setCoordinate(0, vertices[0]);

@@ -13,9 +13,9 @@ Triangle::Triangle() {
 }
 
 bool ScaleneTriangle::validate() {
-    double side1 = calcLength(vertices[0], vertices[1]);
-    double side2 = calcLength(vertices[1], vertices[2]);
-    double side3 = calcLength(vertices[2], vertices[0]);
+    float side1 = calcLength(vertices[0], vertices[1]);
+    float side2 = calcLength(vertices[1], vertices[2]);
+    float side3 = calcLength(vertices[2], vertices[0]);
 
     return (
         isTriangle(side1, side2, side3) &&
@@ -26,9 +26,9 @@ bool ScaleneTriangle::validate() {
 }
 
 bool IsoscelesTriangle::validate() {
-    double side1 = calcLength(vertices[0], vertices[1]);
-    double side2 = calcLength(vertices[1], vertices[2]);
-    double side3 = calcLength(vertices[2], vertices[0]);
+    float side1 = calcLength(vertices[0], vertices[1]);
+    float side2 = calcLength(vertices[1], vertices[2]);
+    float side3 = calcLength(vertices[2], vertices[0]);
 
     return (
         isTriangle(side1, side2, side3) && (
@@ -38,9 +38,9 @@ bool IsoscelesTriangle::validate() {
 }
 
 bool EquilateralTriangle::validate() {
-    double side1 = calcLength(vertices[0], vertices[1]);
-    double side2 = calcLength(vertices[1], vertices[2]);
-    double side3 = calcLength(vertices[2], vertices[0]);
+    float side1 = calcLength(vertices[0], vertices[1]);
+    float side2 = calcLength(vertices[1], vertices[2]);
+    float side3 = calcLength(vertices[0], vertices[2]);
 
     return (
         isTriangle(side1, side2, side3) &&
