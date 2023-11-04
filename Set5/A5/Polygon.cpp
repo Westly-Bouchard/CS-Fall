@@ -18,14 +18,18 @@ void Polygon::setColor(Color color) {
 }
 
 void Polygon::draw(RenderWindow& renderer) {
+    // Create shape to draw
     ConvexShape shape = ConvexShape(this->numVertices);
 
+    // Set the color
     shape.setFillColor(this->color);
 
+    // Set the vertices
     for (int i = 0; i < this->numVertices; i++) {
         shape.setPoint(i, Vector2f(this->vertices[i].x, this->vertices[i].y));
     }
 
+    // Draw the shape to the renderer
     renderer.draw(shape);
 }
 
