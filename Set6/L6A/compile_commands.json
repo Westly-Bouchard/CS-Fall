@@ -1,0 +1,40 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic-errors",
+      "-Wno-error=unused-parameter",
+      "-std=c++17",
+      "-g",
+      "-c",
+      "-o",
+      "main.o",
+      "main.cpp"
+    ],
+    "directory": "/Users/westlybouchard/Documents/CS Fall/Set6/L6A",
+    "file": "/Users/westlybouchard/Documents/CS Fall/Set6/L6A/main.cpp",
+    "output": "/Users/westlybouchard/Documents/CS Fall/Set6/L6A/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic-errors",
+      "-Wno-error=unused-parameter",
+      "-std=c++17",
+      "-g",
+      "-c",
+      "-o",
+      "test_suite.o",
+      "test_suite.cpp"
+    ],
+    "directory": "/Users/westlybouchard/Documents/CS Fall/Set6/L6A",
+    "file": "/Users/westlybouchard/Documents/CS Fall/Set6/L6A/test_suite.cpp",
+    "output": "/Users/westlybouchard/Documents/CS Fall/Set6/L6A/test_suite.o"
+  }
+]
