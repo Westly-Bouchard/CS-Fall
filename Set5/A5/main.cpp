@@ -23,8 +23,8 @@ using namespace std;
 using namespace sf;
 
 // Constants for window sizing
-#define WINDOW_WIDTH 650
-#define WINDOW_HEIGHT 650
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 640
 
 /**
  * @brief For passing polygons back and forth while preserving type information

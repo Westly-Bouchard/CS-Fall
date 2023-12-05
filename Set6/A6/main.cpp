@@ -1,8 +1,12 @@
 #include <iostream>
 #include <fstream>
+
+#include "BFSRunner.h"
+#include "DFSRunner.h"
 using namespace std;
 
 #include "Cell.h"
+#include "Runner.h"
 
 #include <SFML/Graphics.hpp>
 using namespace sf;
@@ -36,6 +40,7 @@ int main(int argc, char* argv[]) {
     file.get();
 
     Matrix<Cell> maze = Matrix<Cell>(rows, cols);
+    int startRow, startCol;
 
     char nextChar;
 
@@ -43,16 +48,35 @@ int main(int argc, char* argv[]) {
         for (int j = 0; j < cols; j++) {
             file >> nextChar;
             maze.set(i, j, Cell(i, j, nextChar));
+            if (nextChar == 'S') {
+                startRow = i;
+                startCol = j;
+            }
         }
     }
 
-    // For debugging
-    // for (int i = 0; i  < rows; i++) {
-    //     for (int j = 0; j < cols; j++) {
-    //         cout << maze.get(i, j) << " ";
-    //     }
-    //     cout << endl;
-    // }
+    cout << "[DEBUG] PARSED MAZE" << endl;
+    for (int i = 0; i  < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << maze.get(i, j) << " ";
+        }
+        cout << endl;
+    }
+
+    char searchMethod = '\0';
+
+    while (searchMethod != 'B' && searchMethod != 'D') {
+        cout << "What search method would you like to use? ('B' -> BFS, 'D' -> DFS) ";
+        cin >> searchMethod;
+        cout << endl;
+    }
+
+    ARunner* runner;
+    if (searchMethod == 'B') {
+        runner = new BFSRunner(maze, startRow, startCol);
+    } else if (searchMethod == 'D') {
+        runner = new DFSRunner(maze, startRow, startCol);
+    }
 
     RenderWindow window(
         VideoMode(15 * cols, 15 * rows),
@@ -69,15 +93,16 @@ int main(int argc, char* argv[]) {
             }
         }
 
+        sleep(milliseconds(100));
+
         window.clear();
 
-        for (int i = 0; i < maze.getRows(); i++) {
-            for (int j = 0; j < maze.getCols(); j++) {
-                maze.get(i, j).draw(window);
-            }
-        }
+        runner->draw(window);
 
         window.display();
+
+        if (!runner->isSolved()) runner->takeSolutionStep();
+
     }
 
 }

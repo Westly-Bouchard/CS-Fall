@@ -45,8 +45,6 @@ int main() {
         cout << endl;
     }
 
-    cout << "Creating list" << endl;
-
     IList<int>* arr;
 
     if (listType == 1) {

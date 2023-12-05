@@ -1,0 +1,15 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++17",
+      "-o",
+      "main",
+      "main.cpp"
+    ],
+    "directory": "/Users/westlybouchard/Documents/CS Fall/hello_world",
+    "file": "/Users/westlybouchard/Documents/CS Fall/hello_world/main.cpp",
+    "output": "/Users/westlybouchard/Documents/CS Fall/hello_world/main"
+  }
+]
